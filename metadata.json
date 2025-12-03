@@ -1,0 +1,5 @@
+{
+  "name": "Dev Toolbox Hub",
+  "description": "A powerful, all-in-one toolbox for developers. Includes a JSON formatter, JWT debugger, Base64 converter, UUID generator, and a Gemini-powered SQL formatter.",
+  "requestFramePermissions": []
+}

@@ -1,0 +1,42 @@
+<div class="bg-gray-800 rounded-lg shadow-xl p-6">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div>
+      <label for="json-input" class="block text-sm font-medium text-gray-300 mb-2">Input JSON</label>
+      <textarea 
+        id="json-input"
+        rows="16" 
+        class="w-full p-3 bg-gray-900 border border-gray-700 rounded-md text-gray-200 font-mono focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+        placeholder="Paste your JSON here..."
+        [value]="inputJson()"
+        (input)="onInput($event)">
+      </textarea>
+    </div>
+    <div>
+      <label for="json-output" class="block text-sm font-medium text-gray-300 mb-2">Formatted JSON</label>
+      <div class="relative h-full">
+        <pre class="w-full h-full p-3 bg-gray-900 border border-gray-700 rounded-md text-gray-200 font-mono overflow-auto whitespace-pre-wrap break-words"><code [textContent]="formattedJson()"></code></pre>
+        @if(formattedJson()){
+          <button (click)="copyToClipboard()" class="absolute top-2 right-2 p-2 rounded-md bg-gray-700 hover:bg-gray-600 text-gray-300">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+          </button>
+        }
+      </div>
+    </div>
+  </div>
+
+  @if (errorMessage()) {
+    <div class="mt-4 p-4 bg-red-900 border border-red-700 text-red-200 rounded-md">
+      <p class="font-semibold">Error</p>
+      <p>{{ errorMessage() }}</p>
+    </div>
+  }
+
+  <div class="mt-6 flex justify-end space-x-4">
+    <button (click)="clearAll()" class="px-5 py-2.5 rounded-md text-sm font-medium bg-gray-600 text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-gray-500">
+      Clear
+    </button>
+    <button (click)="formatJson()" class="px-5 py-2.5 rounded-md text-sm font-medium bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-blue-500">
+      Format JSON
+    </button>
+  </div>
+</div>

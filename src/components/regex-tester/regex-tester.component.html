@@ -1,0 +1,51 @@
+<div class="bg-gray-800 rounded-lg shadow-xl p-6">
+  <div class="flex flex-col md:flex-row gap-4 mb-4">
+    <div class="flex-grow">
+      <label for="regex-pattern" class="block text-sm font-medium text-gray-300 mb-2">Regular Expression</label>
+      <input 
+        type="text"
+        id="regex-pattern"
+        class="w-full p-3 bg-gray-900 border border-gray-700 rounded-md text-green-400 font-mono focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+        placeholder="/pattern/"
+        [value]="regexPattern()"
+        (input)="onPatternInput($event)"
+      />
+    </div>
+    <div class="w-full md:w-32">
+      <label for="regex-flags" class="block text-sm font-medium text-gray-300 mb-2">Flags</label>
+      <input 
+        type="text"
+        id="regex-flags"
+        class="w-full p-3 bg-gray-900 border border-gray-700 rounded-md text-yellow-400 font-mono focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+        placeholder="gmi"
+        [value]="regexFlags()"
+        (input)="onFlagsInput($event)"
+      />
+    </div>
+  </div>
+
+  <div>
+    <label for="test-string" class="block text-sm font-medium text-gray-300 mb-2">Test String</label>
+    <textarea 
+      id="test-string"
+      rows="8" 
+      class="w-full p-3 bg-gray-900 border border-gray-700 rounded-md text-gray-200 font-mono focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+      placeholder="Enter text to test your regex against..."
+      [value]="testString()"
+      (input)="onTestStringInput($event)">
+    </textarea>
+  </div>
+  
+  @if (errorMessage()) {
+    <div class="mt-4 p-3 bg-red-900 border border-red-700 text-red-200 rounded-md font-mono text-sm">
+      <p><span class="font-semibold">Invalid Regex:</span> {{ errorMessage() }}</p>
+    </div>
+  }
+
+  <div class="mt-6">
+    <h3 class="text-lg font-semibold text-gray-300 mb-2">Result</h3>
+    <div class="w-full p-4 bg-gray-900 border border-gray-700 rounded-md text-gray-200 font-mono overflow-auto min-h-[10rem] whitespace-pre-wrap break-words">
+      <code [innerHTML]="highlightedResult()"></code>
+    </div>
+  </div>
+</div>

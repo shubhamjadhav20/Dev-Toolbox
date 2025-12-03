@@ -1,0 +1,33 @@
+<div class="bg-gray-800 rounded-lg shadow-xl p-6">
+  <div>
+    <label for="jwt-input" class="block text-sm font-medium text-gray-300 mb-2">JWT Token</label>
+    <textarea 
+      id="jwt-input"
+      rows="4" 
+      class="w-full p-3 bg-gray-900 border border-gray-700 rounded-md text-gray-200 font-mono focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+      placeholder="Paste your JWT here..."
+      [value]="token()"
+      (input)="onInput($event)">
+    </textarea>
+  </div>
+
+  @if (errorMessage()) {
+    <div class="mt-4 p-4 bg-red-900 border border-red-700 text-red-200 rounded-md">
+      <p class="font-semibold">Error</p>
+      <p>{{ errorMessage() }}</p>
+    </div>
+  }
+
+  @if (decoded().header) {
+    <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div>
+        <h3 class="text-lg font-semibold text-blue-400 mb-2 border-b border-gray-700 pb-2">Header</h3>
+        <pre class="w-full p-3 bg-gray-900 border border-gray-700 rounded-md text-gray-200 font-mono overflow-auto whitespace-pre-wrap break-words"><code>{{ getFormattedJson(decoded().header) }}</code></pre>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold text-pink-400 mb-2 border-b border-gray-700 pb-2">Payload</h3>
+        <pre class="w-full p-3 bg-gray-900 border border-gray-700 rounded-md text-gray-200 font-mono overflow-auto whitespace-pre-wrap break-words"><code>{{ getFormattedJson(decoded().payload) }}</code></pre>
+      </div>
+    </div>
+  }
+</div>

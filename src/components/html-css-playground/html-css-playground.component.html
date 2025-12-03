@@ -1,0 +1,39 @@
+<div class="bg-gray-800 rounded-lg shadow-xl p-6 h-[75vh] flex flex-col">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 flex-1">
+    <!-- Code Editors -->
+    <div class="flex flex-col gap-4 h-full">
+      <div class="flex flex-col flex-1">
+        <label for="html-input" class="block text-sm font-medium text-gray-300 mb-2">HTML</label>
+        <textarea 
+          id="html-input"
+          class="w-full flex-1 p-3 bg-gray-900 border border-gray-700 rounded-md text-gray-200 font-mono focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-none"
+          placeholder="<h1>Hello</h1>"
+          [value]="htmlCode()"
+          (input)="onHtmlInput($event)">
+        </textarea>
+      </div>
+       <div class="flex flex-col flex-1">
+        <label for="css-input" class="block text-sm font-medium text-gray-300 mb-2">CSS</label>
+        <textarea 
+          id="css-input"
+          class="w-full flex-1 p-3 bg-gray-900 border border-gray-700 rounded-md text-gray-200 font-mono focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-none"
+          placeholder="body { color: red; }"
+          [value]="cssCode()"
+          (input)="onCssInput($event)">
+        </textarea>
+      </div>
+    </div>
+    
+    <!-- Live Preview -->
+    <div class="flex flex-col h-full">
+      <label for="preview-pane" class="block text-sm font-medium text-gray-300 mb-2">Live Preview</label>
+      <iframe 
+        id="preview-pane"
+        title="HTML/CSS Preview"
+        class="w-full flex-1 bg-white border border-gray-700 rounded-md"
+        sandbox="allow-scripts"
+        [srcdoc]="previewContent()">
+      </iframe>
+    </div>
+  </div>
+</div>

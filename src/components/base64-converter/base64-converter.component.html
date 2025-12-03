@@ -1,0 +1,47 @@
+<div class="bg-gray-800 rounded-lg shadow-xl p-6">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div>
+      <label for="plain-text" class="block text-sm font-medium text-gray-300 mb-2">Plain Text</label>
+      <textarea 
+        id="plain-text"
+        rows="10" 
+        class="w-full p-3 bg-gray-900 border border-gray-700 rounded-md text-gray-200 font-mono focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+        placeholder="Type or paste your text here..."
+        [value]="plainText()"
+        (input)="onPlainTextInput($event)">
+      </textarea>
+    </div>
+    <div>
+      <label for="base64-text" class="block text-sm font-medium text-gray-300 mb-2">Base64</label>
+      <textarea 
+        id="base64-text"
+        rows="10" 
+        class="w-full p-3 bg-gray-900 border border-gray-700 rounded-md text-gray-200 font-mono focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+        placeholder="Your Base64 result will appear here..."
+        [value]="base64Text()"
+        (input)="onBase64Input($event)">
+      </textarea>
+    </div>
+  </div>
+
+  @if (errorMessage()) {
+    <div class="mt-4 p-4 bg-red-900 border border-red-700 text-red-200 rounded-md">
+      <p class="font-semibold">Error</p>
+      <p>{{ errorMessage() }}</p>
+    </div>
+  }
+
+  <div class="mt-6 flex flex-col sm:flex-row items-center justify-between">
+    <div class="flex space-x-4 mb-4 sm:mb-0">
+      <button (click)="encode()" class="px-5 py-2.5 rounded-md text-sm font-medium bg-blue-600 text-white hover:bg-blue-700">
+        Encode to Base64
+      </button>
+      <button (click)="decode()" class="px-5 py-2.5 rounded-md text-sm font-medium bg-green-600 text-white hover:bg-green-700">
+        Decode from Base64
+      </button>
+    </div>
+    <button (click)="clearAll()" class="px-5 py-2.5 rounded-md text-sm font-medium bg-gray-600 text-white hover:bg-gray-700 w-full sm:w-auto">
+      Clear
+    </button>
+  </div>
+</div>
